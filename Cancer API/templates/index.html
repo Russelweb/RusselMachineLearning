@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cancer Prediction</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #c9d6ff, #f1f5f9);
+      color: #333;
+      text-align: center;
+      padding: 30px;
+    }
+    h1 {
+      color: #2563eb;
+    }
+    form {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+    input, select {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1d4ed8;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 10px;
+      background: #e0f2fe;
+      display: inline-block;
+    }
+    label{
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h1>🩺 Cancer Risk Prediction</h1>
+  <form method="POST">
+    <input type="number" name="age" placeholder="Age" required><br>
+    <label>
+      Gender
+      <select name="gender" required>
+      <option value="0">Male</option>
+      <option value="1">Female</option>
+    </select><br>
+    </label>
+    
+    <input type="number" step="0.1" name="bmi" placeholder="BMI" required><br>
+    <label>
+      Smoking status
+      <select name="smoking" required>
+      <option value="0">Non-Smoker</option>
+      <option value="1">Smoker</option>
+    </select><br>
+    </label>
+    
+    <label>
+      Genetic Risk
+      <select name="geneticrisk" required>
+      <option value="0">Low</option>
+      <option value="1">Normal</option>
+      <option value="2">High</option>
+    </select><br>
+    </label>
+    
+    <input type="number" step="0.1" name="physicalactivity" placeholder="Physical Activity (hours/day)" required><br>
+    <input type="number" step="0.1" name="alcoholintake" placeholder="Alcohol Intake (1-5)" required><br>
+    <label>
+      Cancer history
+      <select name="cancerhistory" required>
+      <option value="0">No</option>
+      <option value="1">Yes</option>
+    </select><br>
+    </label>
+    
+    <button type="submit">Predict</button>
+  </form>
+  {% if result %}
+    <div class="result">
+      <h2>{{ result.risk }}</h2>
+      <p>Probability: {{ result.confidence }}%</p>
+    </div>
+  {% endif %}
+</body>
+</html>
